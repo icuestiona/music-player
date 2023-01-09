@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link href="src/style.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://kit.fontawesome.com/9157e1cfe3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="music-player">
+        <nav>
+          <div class="circle">
+            <i class="fa-solid fa-angle-left"></i>
+          </div>
+          <div class="circle">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </nav>
+        <img src="src/Rihanna.JPG" class="song-img" />
+        <h1>Diamonds</h1>
+        <p>Rihanna. Barbados</p>
+        <audio controls>
+          <source src="src/music/Rihanna-Diamonds.mp3" type="audio/mpeg" />
+        </audio>
+        <input type="range" value="0" />
+      </div>
+    </div>
+  </body>
+</html>
