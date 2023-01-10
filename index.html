@@ -22,10 +22,10 @@
             <i class="fa-solid fa-bars"></i>
           </div>
         </nav>
-        <img src="src/Rihanna2.JPG" class="song-img" />
+        <img src="src/Rihanna.JPG" class="song-img" />
         <h1>Diamonds</h1>
         <p>Rihanna. Barbados</p>
-        <audio controls id="song">
+        <audio id="song">
           <source src="src/music/Rihanna-Diamonds.mp3" type="audio/mpeg" />
         </audio>
         <input type="range" value="0" id="progress" />
@@ -64,6 +64,13 @@
           progress.value = song.currentTime;
         }, 500);
       }
+
+      progress.onchange = function () {
+        song.play();
+        song.currentTime = progress.value;
+        ctrlIcon.classList.add("fa-pause");
+        ctrlIcon.classList.remove("fa-play");
+      };
     </script>
   </body>
 </html>
