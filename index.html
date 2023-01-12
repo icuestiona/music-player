@@ -13,31 +13,75 @@
   </head>
   <body>
     <div class="container">
-      <div class="music-player">
-        <nav>
-          <div class="circle">
-            <i class="fa-solid fa-angle-left"></i>
+      <div class="music">
+        <!-- Music player -->
+        <div class="music-player">
+          <!-- Header -->
+          <nav>
+            <div class="circle">
+              <i class="fa-solid fa-music"></i>
+            </div>
+            <h2>Now playing</h2>
+            <div class="circle">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+          </nav>
+          <!-- Song Details -->
+          <div class="details">
+            <img src="src/Rihanna.JPG" class="song-img" />
+            <h3 class="title">Diamonds</h3>
+            <p class="artist">Rihanna. Barbados</p>
           </div>
-          <div class="circle">
-            <i class="fa-solid fa-bars"></i>
+
+          <audio id="song">
+            <source src="src/music/Rihanna-Diamonds.mp3" type="audio/mpeg" />
+          </audio>
+          <!-- player controls -->
+          <div class="song-timer">
+            <span class="current-time">00:12</span>
+            <span class="duration-time">4:10</span>
           </div>
-        </nav>
-        <img src="src/Rihanna.JPG" class="song-img" />
-        <h1>Diamonds</h1>
-        <p>Rihanna. Barbados</p>
-        <audio id="song">
-          <source src="src/music/Rihanna-Diamonds.mp3" type="audio/mpeg" />
-        </audio>
-        <input type="range" value="0" id="progress" />
-        <div class="controls">
-          <div><i class="fa-solid fa-backward"></i></div>
-          <div onclick="playPause()">
-            <i class="fa-solid fa-play" id="ctrlIcon"></i>
+          <!-- song duration -->
+          <div class="duration">
+            <input type="range" min="0" max="100" value="0" id="progress" />
           </div>
-          <div><i class="fa-solid fa-forward"></i></div>
+          <!-- Buttons -->
+          <div class="controls">
+            <div><i class="fa-solid fa-backward"></i></div>
+            <div onclick="playPause()">
+              <i class="fa-solid fa-play" id="ctrlIcon"></i>
+            </div>
+            <div><i class="fa-solid fa-forward"></i></div>
+          </div>
+          <!-- Autoplay -->
+          <div class="play-all">
+            <i class="fa-solid fa-repeat"></i>
+          </div>
+          <!-- Volume -->
+          <div class="volume">
+            <p id="show-volume">50</p>
+            <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+            <input type="range" min="0" max="100" value="50" id="volume" />
+          </div>
+        </div>
+      </div>
+      <!--Playlist -->
+      <div class="music-playlist">
+        <div class="header playlist-header">
+          <i class="fa-solid fa-music"></i>
+          <h3>Playlist</h3>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <!--Playlist Items -->
+        <div class="playlist-div">
+          <div class="playlist">
+            <span class="song-index">1</span>
+            <p class="single-song">Song one</p>
+          </div>
         </div>
       </div>
     </div>
+
     <script>
       let progress = document.getElementById("progress");
       let song = document.getElementById("song");
