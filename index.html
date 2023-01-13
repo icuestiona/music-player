@@ -30,7 +30,7 @@
           </div>
           <!-- Song Details -->
           <div class="details">
-            <img src="src/Rihanna.JPG" class="song-img" />
+            <img src="src/images/Rihanna.JPG" class="song-img" />
             <h3 class="title">Diamonds</h3>
             <p class="artist">Rihanna. Barbados</p>
           </div>
@@ -72,7 +72,7 @@
         <div class="header playlist-header">
           <i class="fa-solid fa-music"></i>
           <h3>Playlist</h3>
-          <i class="fa-solid fa-xmark"></i>
+          <i class="fa-solid fa-times"></i>
         </div>
         <!--Playlist Items -->
         <div class="playlist-div">
@@ -84,39 +84,7 @@
       </div>
     </div>
 
-    <script>
-      let progress = document.getElementById("progress");
-      let song = document.getElementById("song");
-      let ctrlIcon = document.getElementById("ctrlIcon");
-
-      song.onloadedmetadata = function () {
-        progress.max = song.duration;
-        progress.value = song.currentTime;
-      };
-
-      function playPause() {
-        if (ctrlIcon.classList.contains("fa-pause")) {
-          song.pause();
-          ctrlIcon.classList.remove("fa-pause");
-          ctrlIcon.classList.add("fa-play");
-        } else {
-          song.play();
-          ctrlIcon.classList.add("fa-pause");
-          ctrlIcon.classList.remove("fa-play");
-        }
-      }
-      if (song.play()) {
-        setInterval(() => {
-          progress.value = song.currentTime;
-        }, 500);
-      }
-
-      progress.onchange = function () {
-        song.play();
-        song.currentTime = progress.value;
-        ctrlIcon.classList.add("fa-pause");
-        ctrlIcon.classList.remove("fa-play");
-      };
-    </script>
+    <script src="music.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
