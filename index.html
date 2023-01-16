@@ -15,7 +15,7 @@
     <div class="container">
       <div class="music">
         <!-- Music player -->
-        <div class="music-player">
+        <div class="music_player">
           <!-- Header -->
           <div class="header">
             <nav>
@@ -30,7 +30,7 @@
           </div>
           <!-- Song Details -->
           <div class="details">
-            <img src="src/images/Rihanna.JPG" class="song-img" />
+            <img src="src/images/Rihanna.JPG" class="track_img" alt="" />
             <h3 class="title">Diamonds</h3>
             <p class="artist">Rihanna. Barbados</p>
           </div>
@@ -39,31 +39,55 @@
             <source src="src/music/Rihanna-Diamonds.mp3" type="audio/mpeg" />
           </audio>
           <!-- player controls -->
-          <div class="song-timer">
-            <span class="current-time">00:12</span>
-            <span class="duration-time">4:10</span>
+          <div class="player_controls">
+            <div class="song_timer">
+              <div class="current_time">00:00</div>
+              <div class="total_duration">00:00</div>
+            </div>
           </div>
           <!-- song duration -->
           <div class="duration">
-            <input type="range" min="0" max="100" value="0" id="progress" />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              id="progress"
+              onchange="seekTo()"
+            />
           </div>
           <!-- Buttons -->
           <div class="controls">
-            <div><i class="fa-solid fa-backward"></i></div>
+            <div onclick="prevTrack()">
+              <i class="fa-solid fa-backward" id="prev"></i>
+            </div>
             <div onclick="playPause()">
               <i class="fa-solid fa-play" id="ctrlIcon"></i>
             </div>
-            <div><i class="fa-solid fa-forward"></i></div>
+            <div onclick="nextTrack()">
+              <i class="fa-solid fa-forward" id="next"></i>
+            </div>
           </div>
           <!-- Autoplay -->
-          <div class="play-all">
-            <i class="fa-solid fa-repeat"></i>
+          <div onclick="autoPlayToggle()">
+            <i class="fa-solid fa-sync-alt" id="play-all"></i>
           </div>
           <!-- Volume -->
           <div class="volume">
-            <p id="show-volume">50</p>
-            <i class="fa-solid fa-volume-high" id="volume-icon"></i>
-            <input type="range" min="0" max="100" value="50" id="volume" />
+            <p id="show_volume">50</p>
+            <i
+              class="fa-solid fa-volume-high"
+              id="volume-icon"
+              onclick="muteSound()"
+            ></i>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              id="volume_slider"
+              onchange="setVolume()"
+            />
           </div>
         </div>
       </div>
@@ -83,8 +107,6 @@
         </div>
       </div>
     </div>
-
-    <script src="music.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

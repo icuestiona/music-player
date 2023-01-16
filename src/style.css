@@ -14,7 +14,7 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.music-player {
+.music_player {
   background: #ffe0e5;
   width: 400px;
   padding: 25px 35px;
@@ -46,7 +46,7 @@ nav h2 {
   cursor: pointer;
 }
 
-.song-img {
+.track_img {
   width: 220px;
   height: 220px;
   border-radius: 50%;
@@ -64,7 +64,7 @@ nav h2 {
   color: #2e8a9c;
 }
 
-.song-timer {
+.song_timer {
   color: #5d4449;
   display: flex;
   justify-content: space-between;
@@ -126,7 +126,7 @@ nav h2 {
   background: #f53192;
   color: #fff;
 }
-.play-all {
+#play-all {
   width: 50px;
   height: 50px;
   margin: 20px;
@@ -139,7 +139,6 @@ nav h2 {
   box-shadow: 0 10px 20px rgba(255, 26, 26, 0.22);
   cursor: pointer;
 }
-
 .volume {
   display: flex;
   justify-content: center;
