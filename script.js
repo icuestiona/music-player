@@ -1,5 +1,5 @@
 let progress = document.getElementById("progress");
-let song = document.getElementById("song");
+let song = document.createElement("audio");
 let ctrlIcon = document.getElementById("ctrlIcon");
 
 song.onloadedmetadata = function () {
@@ -34,29 +34,39 @@ progress.onchange = function () {
 //
 let previous = document.querySelector("#prev");
 let next = document.querySelector("#next");
-let autoPlayBtn = document.querySelector("#play-all");
+let autoPlayBtn = document.querySelector("#play_all");
 let currentVolume = document.querySelector(".volume");
 let showVolume = document.querySelector("#show_volume");
-let volumeIcon = document.querySelector("#volume-icon");
+let volumeIcon = document.querySelector("#volume_icon");
 let volume_slider = document.querySelector("#volume_slider");
 let trackImage = document.querySelector(".track_img");
 let title = document.querySelector(".title");
 let artist = document.querySelector(".artist");
-let trackCurrentTime = document.querySelector(".current_time");
-let trackDuration = document.querySelector(".total_duration");
+let songCurrentTime = document.querySelector(".current_time");
+let songDuration = document.querySelector(".total_duration");
 let hamBurger = document.querySelector(".fa-bars");
-let closeIcon = document.querySelector(".fa-times");
-let musicPlaylist = document.querySelector(".music-playlist");
+let closeIcon = document.querySelector(".fa-music");
+let musicPlaylist = document.querySelector(".music_playlist");
+let playlistDiv = document.querySelector(".playlist_div");
 let Playlist = document.querySelector(".playlist");
-let curr_track = document.createElement("audio");
+
+//All Event Listeners
+next.addEventListener("click", nextTrack);
+previous.addEventListener("click", prevTrack);
+autoPlayBtn.addEventListener("click", autoPlayToggle);
+volumeIcon.addEventListener("click", muteSound);
+volume_slider.addEventListener("change", setVolume);
+song.addEventListener("timeupdate", songTimeUpdate);
+hamBurger.addEventListener("click", showPlayList);
+closeIcon.addEventListener("click", hidePlayList);
+
 //
 let timer;
 let autoplay = 0;
 let track_index = 0;
 let isPlaying = false;
 
-//
-
+//Load Tracks
 const trackList = [
   {
     name: "Diamonds",
@@ -102,31 +112,28 @@ const trackList = [
   },
 ];
 
-loadTrack(track_index);
+// reset progress slider
+function reset_progress() {
+  progress.value = 0;
+}
 
 function loadTrack(track_index) {
   clearInterval(timer);
-  reset();
+  reset_progress();
 
   song.src = trackList[track_index].path;
   trackImage.src = trackList[track_index].img;
-  title.InnerHTML = trackList[track_index].name;
-  artist.InnerHTML = trackList[track_index].singer;
-  curr_track.load();
+  title.textContent = trackList[track_index].name;
+  artist.textContent = trackList[track_index].singer;
+  song.load();
 
-  timer = setInterval(progress, 1000);
+  timer = setInterval(() => {
+    progress.value = song.currentTime;
+  }, 500);
+
+  song.addEventListener("ended", nextTrack);
 }
 loadTrack(track_index);
-
-//All Event Listeners
-next.addEventListener("click", nextTrack);
-previous.addEventListener("click", prevTrack);
-autoPlayBtn.addEventListener("click", autoPlayToggle);
-volumeIcon.addEventListener("click", muteSound);
-currentVolume.addEventListener("change", setVolume);
-curr_track.addEventListener("ended", nextTrack);
-
-//Load Tracks
 
 //Next song
 function nextTrack() {
@@ -165,21 +172,110 @@ function autoPlayToggle() {
 }
 
 //Update slider
-function updateSlider() {
-  if (track.ended) {
-    ctrlIcon.classList.add("fa-play");
-    if (autoplay == 1 && track_index < trackList.length - 1) {
-      track_index++;
-      loadTrack(track_index);
-      playPause();
-    } else if (autoplay == 1 && track_index == trackList.length - 1) {
-      track_index = 0;
+function updateProgress() {
+  let position = 0;
+
+  if (!isNaN(song.duration)) {
+    position = song.currentTime * (100 / song.duration);
+    progress.value = position;
+
+    progress.max = song.duration;
+    progress.value = song.currentTime;
+  }
+
+  if (song.ended) {
+    play.innerHTML = `<i class="fa-solid fa-play">`;
+    if (autoplay == 1) {
+      track_index += 1;
       loadTrack(track_index);
       playPause();
     }
   }
 }
 
-function reset() {
-  progress.value = 0;
+//Update current some time
+function songTimeUpdate() {
+  if (song.duration) {
+    let currentMinutes = Math.floor(song.currentTime / 60);
+    let currentSeconds = Math.floor(song.currentTime - currentMinutes * 60);
+    let durationMinutes = Math.floor(song.duration / 60);
+    let durationSeconds = Math.floor(song.duration - durationMinutes * 60);
+
+    if (currentSeconds < 10) {
+      currentSeconds = "0" + currentSeconds;
+    }
+    if (durationSeconds < 10) {
+      durationSeconds = "0" + durationSeconds;
+    }
+    if (currentMinutes < 10) {
+      currentMinutes = "0" + currentMinutes;
+    }
+    if (durationMinutes < 10) {
+      durationMinutes = "0" + durationMinutes;
+    }
+
+    songCurrentTime.textContent = currentMinutes + ":" + currentSeconds;
+    songDuration.textContent = durationMinutes + ":" + durationSeconds;
+  } else {
+    songCurrentTime.textContent = "00" + ":" + "00";
+    songDuration.textContent = "00" + ":" + "00";
+  }
+}
+
+//Mute Sound
+function muteSound() {
+  song.volume = 0;
+  volumeIcon.value = 0;
+  showVolume.textContent = 0;
+}
+
+//Change Volume
+function setVolume() {
+  showVolume.innerHTML = volume_slider.value;
+  song.volume = volume_slider.value / 100;
+}
+
+//Show PlayList
+function showPlayList() {
+  musicPlaylist.style.transform = "translateX(0)";
+}
+
+//Hide PlayList
+function hidePlayList() {
+  musicPlaylist.style.transform = "translateX(-100%)";
+}
+
+// Display tracks in Playlist
+let counter = 1;
+function displayTracks() {
+  for (let i = 0; i < trackList.length; i++) {
+    console.log(trackList[i].name);
+    let div = document.createElement("div");
+    div.classList.add("playlist");
+    div.innerHTML = ` 
+      <span class="song_index">${counter++}</span>
+      <p class="single_song">${trackList[i].name}</p> `;
+
+    playlistDiv.appendChild(div);
+  }
+  playFromPlaylist();
+}
+
+displayTracks();
+
+//Play song from the Playlist
+function playFromPlaylist() {
+  playlistDiv.addEventListener("click", (e) => {
+    if (e.target.classList.contains("single_song")) {
+      // alert(e.target.innerHTML);
+      const indexNum = trackList.findIndex((item, index) => {
+        if (item.name === e.target.innerHTML) {
+          return true;
+        }
+      });
+      loadTrack(indexNum);
+      playPause();
+      hidePlayList();
+    }
+  });
 }

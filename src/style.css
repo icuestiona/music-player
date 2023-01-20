@@ -7,7 +7,7 @@
 
 .container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #333;
   display: flex;
   align-items: center;
@@ -72,13 +72,13 @@ nav h2 {
   margin: 1rem 0;
 }
 
-.music-player h1 {
+.music_player h1 {
   font-size: 1.25rem;
   font-weight: 400;
   color: #333;
   margin-top: 20px;
 }
-.music-player p {
+.music_player p {
   font-size: 0.876rem;
   color: #333;
 }
@@ -126,7 +126,7 @@ nav h2 {
   background: #f53192;
   color: #fff;
 }
-#play-all {
+#play_all {
   width: 50px;
   height: 50px;
   margin: 20px;
@@ -179,11 +179,12 @@ nav h2 {
   cursor: pointer;
   margin: 10px 0;
 }
-.music-playlist {
+.music_playlist {
   position: absolute;
-  margin: 0 auto;
-  top: 0;
+  width: 400px;
   padding: 1rem;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.9);
   width: 100%;
   height: 100%;
@@ -191,7 +192,7 @@ nav h2 {
   transition: all 0.5s;
   width: 400px;
 }
-.playlist-header {
+.playlist_header {
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -200,10 +201,10 @@ nav h2 {
   font-size: 1.4rem;
 }
 
-.playlist-header .fa-xmark {
+.playlist_header .fa-xmark {
   cursor: pointer;
 }
-.playlist-div {
+.playlist_div {
   width: 100%;
   height: 80vh;
   overflow-y: auto;
@@ -215,20 +216,20 @@ nav h2 {
 }
 
 /* Playlist Scroll Bar */
-.playlist-div::-webkit-scrollbar {
+.playlist_div::-webkit-scrollbar {
   height: 5px;
   width: 4px;
   border: 1px solid #d5d5d5;
   background: #d5d5d5;
 }
-.playlist-div::-webkit-scrollbar-track {
+.playlist_div::-webkit-scrollbar-track {
   --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-.playlist-div::-webkit-scrollbar-thumb {
+.playlist_div::-webkit-scrollbar-thumb {
   background-color: #d5d5d5;
   outline: 1px solid #eee;
 }
-.song-index {
+.song_index {
   font-size: 1.4rem;
   margin-right: 5px;
 }

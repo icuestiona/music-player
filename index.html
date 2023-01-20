@@ -49,11 +49,11 @@
           <div class="duration">
             <input
               type="range"
-              min="0"
+              min="1"
               max="100"
               value="0"
+              onchange="updateProgress()"
               id="progress"
-              onchange="seekTo()"
             />
           </div>
           <!-- Buttons -->
@@ -70,14 +70,14 @@
           </div>
           <!-- Autoplay -->
           <div onclick="autoPlayToggle()">
-            <i class="fa-solid fa-sync-alt" id="play-all"></i>
+            <i class="fa-solid fa-sync-alt" id="play_all"></i>
           </div>
           <!-- Volume -->
           <div class="volume">
             <p id="show_volume">50</p>
             <i
               class="fa-solid fa-volume-high"
-              id="volume-icon"
+              id="volume_icon"
               onclick="muteSound()"
             ></i>
             <input
@@ -92,18 +92,18 @@
         </div>
       </div>
       <!--Playlist -->
-      <div class="music-playlist">
-        <div class="header playlist-header">
+      <div class="music_playlist">
+        <div class="header playlist_header">
           <i class="fa-solid fa-music"></i>
           <h3>Playlist</h3>
           <i class="fa-solid fa-times"></i>
         </div>
         <!--Playlist Items -->
-        <div class="playlist-div">
-          <div class="playlist">
-            <span class="song-index">1.</span>
-            <p class="single-song">Song one</p>
-          </div>
+        <div class="playlist_div">
+          <!--   <div class="playlist">
+            <span class="song_index">1.</span>
+            <p class="single_song">Song one</p>
+          </div> -->
         </div>
       </div>
     </div>
