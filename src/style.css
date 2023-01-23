@@ -18,6 +18,7 @@
   position: relative;
   background: #ffe0e5;
   width: 400px;
+  height: 80%;
   padding: 25px 35px;
   text-align: center;
   overflow: hidden;
@@ -236,12 +237,12 @@ nav h2 {
   width: 90%;
   font-size: 1.2rem;
   border-bottom: 1px solid rgb(114, 114, 114);
-  padding: 5px 0;
+  padding: 10px 0;
   cursor: pointer;
 }
 footer {
   text-align: center;
-  margin: 30px 0;
+  margin: 15px 0;
   color: #333;
   font-size: 0.8rem;
   font-family: "poppins", sans-serif;
