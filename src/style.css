@@ -1,5 +1,5 @@
 * {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   font-family: "poppins", sans-serif;
   box-sizing: border-box;
@@ -15,6 +15,7 @@
   flex-wrap: wrap;
 }
 .music_player {
+  position: relative;
   background: #ffe0e5;
   width: 400px;
   padding: 25px 35px;
@@ -96,8 +97,8 @@ nav h2 {
 #progress::-webkit-slider-thumb {
   appearance: none;
   background: #f53192;
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   border: 8px solid #fff;
   box-shadow: 0 5px 5px rgba(255, 26, 26, 0.22);
@@ -181,16 +182,14 @@ nav h2 {
 }
 .music_playlist {
   position: absolute;
-  width: 400px;
-  padding: 1rem;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.9);
-  width: 100%;
+  width: 400px;
   height: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.9);
   transform: translateX(-100%);
   transition: all 0.5s;
-  width: 400px;
 }
 .playlist_header {
   color: #fff;
@@ -201,7 +200,7 @@ nav h2 {
   font-size: 1.4rem;
 }
 
-.playlist_header .fa-xmark {
+.playlist_header .fa-times {
   cursor: pointer;
 }
 .playlist_div {
@@ -239,4 +238,11 @@ nav h2 {
   border-bottom: 1px solid rgb(114, 114, 114);
   padding: 5px 0;
   cursor: pointer;
+}
+footer {
+  text-align: center;
+  margin: 30px 0;
+  color: #333;
+  font-size: 0.8rem;
+  font-family: "poppins", sans-serif;
 }

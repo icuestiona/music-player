@@ -45,7 +45,7 @@ let artist = document.querySelector(".artist");
 let songCurrentTime = document.querySelector(".current_time");
 let songDuration = document.querySelector(".total_duration");
 let hamBurger = document.querySelector(".fa-bars");
-let closeIcon = document.querySelector(".fa-music");
+let closeIcon = document.querySelector(".fa-times");
 let musicPlaylist = document.querySelector(".music_playlist");
 let playlistDiv = document.querySelector(".playlist_div");
 let Playlist = document.querySelector(".playlist");
@@ -54,6 +54,7 @@ let Playlist = document.querySelector(".playlist");
 next.addEventListener("click", nextTrack);
 previous.addEventListener("click", prevTrack);
 autoPlayBtn.addEventListener("click", autoPlayToggle);
+autoPlayBtn.addEventListener("click", updateProgress);
 volumeIcon.addEventListener("click", muteSound);
 volume_slider.addEventListener("change", setVolume);
 song.addEventListener("timeupdate", songTimeUpdate);
@@ -82,7 +83,7 @@ const trackList = [
   },
   {
     name: "Rolling in the deep",
-    path: "src/music/adele_rolling_in_the_deep.mp3",
+    path: "src/music/Adele_Rolling.mp3",
     img: "src/images/Adele.JPG",
     singer: "Adele. England",
   },
@@ -112,11 +113,6 @@ const trackList = [
   },
 ];
 
-// reset progress slider
-function reset_progress() {
-  progress.value = 0;
-}
-
 function loadTrack(track_index) {
   clearInterval(timer);
   reset_progress();
@@ -127,13 +123,16 @@ function loadTrack(track_index) {
   artist.textContent = trackList[track_index].singer;
   song.load();
 
-  timer = setInterval(() => {
-    progress.value = song.currentTime;
-  }, 500);
-
+  timer = progress.onchange();
   song.addEventListener("ended", nextTrack);
+  playPause();
 }
 loadTrack(track_index);
+
+// reset progress slider
+function reset_progress() {
+  progress.value = 0;
+}
 
 //Next song
 function nextTrack() {
@@ -178,15 +177,16 @@ function updateProgress() {
   if (!isNaN(song.duration)) {
     position = song.currentTime * (100 / song.duration);
     progress.value = position;
-
-    progress.max = song.duration;
-    progress.value = song.currentTime;
   }
 
   if (song.ended) {
-    play.innerHTML = `<i class="fa-solid fa-play">`;
-    if (autoplay == 1) {
-      track_index += 1;
+    play.innerHTML = '<i class="fa-solid fa-play"></i>';
+    if (autoplay == 1 && track_index < trackList.length - 1) {
+      track_index++;
+      loadTrack(track_index);
+      playPause();
+    } else if (autoplay == 1 && track_index == trackList.length - 1) {
+      track_index = 0;
       loadTrack(track_index);
       playPause();
     }
