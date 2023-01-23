@@ -246,3 +246,6 @@ footer {
   font-size: 0.8rem;
   font-family: "poppins", sans-serif;
 }
+footer a {
+  text-decoration: none;
+}
