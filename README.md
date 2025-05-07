@@ -1,7 +1,7 @@
-### Audio Player Project
+# Audio Player Project
 <p>A simple, responsive audio player built with HTML, CSS, and JavaScript. This project demonstrates core web development concepts including DOM manipulation and event handling.</p>
 
-### Features
+## Features
   *  Play/pause audio tracks
   *  Next/previous track
   * Volume control with mute functionality
@@ -10,12 +10,12 @@
   * Auto-play toggle for continuous playback
   * Clean, responsive UI
 
-### Technologies Used
+## Technologies Used
 * HTML5 - Structure and audio element
 * CSS3 - Styling and responsive design
 * JavaScript - Core functionality and DOM manipulation
 
-### Key JavaScript Methods
+## Key JavaScript Methods
 * getElementById() - Access DOM elements by ID
 * querySelector() - Select elements using CSS selectors
 * addEventListener() - Handle user interactions
@@ -29,7 +29,7 @@
   *  displayTracks() - Show available tracks
   *  setVolume() - Adjust playback volume
 
-### Usage
+## Usage
 * Click the play button to start playback
 * Use the next/previous buttons to navigate tracks
 * Adjust volume with the slider
